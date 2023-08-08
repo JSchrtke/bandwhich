@@ -9,7 +9,6 @@ use ::pnet::packet::tcp::TcpPacket;
 use ::pnet::packet::udp::UdpPacket;
 use ::pnet::packet::Packet;
 
-use ::ipnetwork::IpNetwork;
 use ::std::io::{self, Result};
 use ::std::net::{IpAddr, SocketAddr};
 use ::std::thread::park_timeout;
@@ -35,7 +34,7 @@ pub enum Direction {
 }
 
 impl Direction {
-    pub fn new(network_interface_ips: &[IpNetwork], source: IpAddr) -> Self {
+    pub fn new(network_interface_ips: &[pnet::ipnetwork::IpNetwork], source: IpAddr) -> Self {
         if network_interface_ips
             .iter()
             .any(|ip_network| ip_network.ip() == source)
